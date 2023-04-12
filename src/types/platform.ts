@@ -3,7 +3,8 @@ import { IIdentifier } from "./common"
 export interface IGamePlatform {
     platform: IGamePlatformDetail
     released_at: string
-    requirements: Requirements
+    requirements_en: Requirements
+    requirements_ru: Requirements
 }
 
 export interface Requirements {
@@ -24,3 +25,5 @@ export interface IPlatform extends IIdentifier {
 export interface IPlatformDetail extends IPlatform {
     description: string
 }
+
+export interface IParentPlatforms extends IIdentifier { }
