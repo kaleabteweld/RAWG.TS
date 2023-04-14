@@ -1,5 +1,6 @@
-import { IPagination } from "../types/common";
+import { IPagination, IPaginationWithOrdering, ISimpleBehavior } from "../types/common";
 import { IQueryBuilder, IQueryParameters, IQueryParametersFilterBy, IQueryParametersInclude } from "../types/common";
+import Rawg from "./rawg";
 
 export class QueryBuilder implements IQueryBuilder {
     private query: Partial<IQueryParameters> = {};
@@ -30,5 +31,11 @@ export class QueryBuilder implements IQueryBuilder {
 
     public build() {
         return this.query;
+    }
+    public buildPagination() {
+        return {
+            page: this.query.page,
+            page_size: this.query.page_size
+        }
     }
 }

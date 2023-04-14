@@ -40,7 +40,7 @@ export interface IGamesDetails extends IGame, IGameSocialMedia, IGameMetaData {
     platforms: IGamePlatform[]
 }
 
-export interface IGenreGame extends IIdentifier {
+export interface IAddedGame extends IIdentifier {
     added: number
 }
 export interface IMetacriticPlatform {

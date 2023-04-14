@@ -61,3 +61,7 @@ export interface IQueryBuilder {
     addPagination: <T extends IPagination>(pagination: T) => IQueryBuilder;
     build: () => any;
 }
+
+export interface ISimpleBehavior<T> {
+    getDetail: () => Promise<T | never>
+}

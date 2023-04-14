@@ -1,10 +1,10 @@
 import { IIdentifier, IQueryParameters } from "./common"
-import { IGenreGame } from "./game"
+import { IAddedGame } from "./game"
 
 export interface IGenre extends IIdentifier {
     games_count: number
     image_background: string
-    games: IGenreGame
+    games: IAddedGame
 }
 
 export interface IGenreDetail extends IGenre {

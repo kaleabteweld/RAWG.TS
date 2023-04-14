@@ -2,7 +2,7 @@ import { QueryBuilder } from "./models/common";
 import { Game, GameModel } from "./models/game";
 import { Genre, GenresModel } from "./models/genres";
 import Rawg from "./models/rawg";
-import { genreFilter } from "./util";
+import { StoreModel } from "./models/store";
 
 const apiKey = "8f9502dd60e940eda43b6c4518c1dee5"
 
@@ -10,6 +10,8 @@ const rawg: Rawg = new Rawg(apiKey)
 
 const gameModel: GameModel = new GameModel(rawg)
 const genresModel: GenresModel = new GenresModel(rawg)
+const storeModel: StoreModel = new StoreModel(rawg)
+
 
 const gameQueryBuilder: QueryBuilder = new QueryBuilder();
 gameQueryBuilder.addFilterBy({
@@ -29,11 +31,11 @@ async function a() {
     const action: Genre = new Genre(rawg, genres[0]);
     const ad = await action.getDetail();
 
-    console.log(genreFilter(genres))
 
+    const stores = await storeModel.getStores(gameQueryBuilder.buildPagination())
 
-    console.log(genres[0])
-    console.log(ad)
+    console.log(stores[0])
+    // console.log(ad)
 }
 
 a()
