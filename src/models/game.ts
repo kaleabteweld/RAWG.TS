@@ -60,7 +60,7 @@ export class Game extends Rawg implements IGameBehavior {
     getStore(query: IPaginationWithOrdering): Promise<IGameStore[] | never> {
         return this.getTemplate<IGameStore[], IPaginationWithOrdering>("stores", "stores", query);
     }
-    getGameGetDetail(): Promise<IGamesDetails | never> {
+    getDetail(): Promise<IGamesDetails | never> {
         return this.getTemplate<IGamesDetails, IPaginationWithOrdering>("", "GameGetDetail");
     }
     getAchievementsList(): Promise<IGameAchievement[] | never> {

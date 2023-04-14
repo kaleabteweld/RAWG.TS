@@ -6,6 +6,7 @@ import { IEsrbRating, IGameRating } from "./rating"
 import { IStore } from "./store"
 import { ITag } from "./tag"
 
+
 export interface IGame extends IIdentifier, IGameRating {
 
     released: Date
@@ -39,6 +40,9 @@ export interface IGamesDetails extends IGame, IGameSocialMedia, IGameMetaData {
     platforms: IGamePlatform[]
 }
 
+export interface IGenreGame extends IIdentifier {
+    added: number
+}
 export interface IMetacriticPlatform {
     metascore: number
     url: string
@@ -119,7 +123,7 @@ export interface IGameBehavior {
     getParentGameForDlcs: (query: IQueryParameters) => Promise<IGame[] | never>
     getScreenshots: (query: IPaginationWithOrdering) => Promise<IGameScreenshots[] | never>
     getStore: (query: IPaginationWithOrdering) => Promise<IGameStore[] | never>
-    getGameGetDetail: () => Promise<IGamesDetails | never>
+    getDetail: () => Promise<IGamesDetails | never>
     getAchievementsList: () => Promise<IGameAchievement[] | never>
     getTrailers: () => Promise<IGameTrailer[] | never>
 }

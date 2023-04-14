@@ -45,10 +45,12 @@ export default class Rawg {
         url.pathname = enterPoint;
 
         endpoint.forEach((e) => {
-            e = e.replace("/", "");
-            e = e.replace("\\", "");
-            e = "/" + e;
-            url.pathname += e;
+            if (e.length != 0) {
+                e = e.replace("/", "");
+                e = e.replace("\\", "");
+                e = "/" + e;
+                url.pathname += e;
+            }
         });
         return url.toString();
     }
