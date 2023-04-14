@@ -1,4 +1,5 @@
 import { QueryBuilder } from "./models/common";
+import { CreatorModel } from "./models/creator";
 import { DeveloperModel } from "./models/developers";
 import { Game, GameModel } from "./models/game";
 import { Genre, GenresModel } from "./models/genres";
@@ -17,6 +18,8 @@ const storeModel: StoreModel = new StoreModel(rawg)
 const publisherModel: PublisherModel = new PublisherModel(rawg)
 const platformModel: PlatformModel = new PlatformModel(rawg)
 const developerModel: DeveloperModel = new DeveloperModel(rawg)
+const creatorModel: CreatorModel = new CreatorModel(rawg)
+
 
 
 
@@ -48,11 +51,14 @@ async function a() {
     // const platforms = await platformModel.getPlatforms(gameQueryBuilder.buildPagination());
     // const ParentPlatforms: any = await platformModel.getParentPlatforms(gameQueryBuilder.buildPagination());
 
-    const devs = await developerModel.getDevelopers(gameQueryBuilder.buildPagination());
+    // const devs = await developerModel.getDevelopers(gameQueryBuilder.buildPagination());
+
+    const creator = await creatorModel.getCreators(gameQueryBuilder.buildPagination());
+    const creatorRoles: any = await creatorModel.getCreatorRoles(gameQueryBuilder.buildPagination());
 
 
-    // console.log(platforms[0])
-    console.log(devs)
+    console.log(creator[0])
+    console.log(creatorRoles[0])
 }
 
 a()

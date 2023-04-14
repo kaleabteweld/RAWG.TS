@@ -30,7 +30,7 @@ export class Developer extends Rawg implements IDeveloperBehavior {
     private rawg: Rawg;
     private developer: IDeveloper | IDeveloperDetail;
 
-    public publishesDetail?: IDeveloperDetail
+    public developerDetail?: IDeveloperDetail
 
     constructor(rawg: Rawg, developer: IDeveloper | IDeveloperDetail) {
         super(rawg.apiKey, rawg.baseUrl);
@@ -39,7 +39,7 @@ export class Developer extends Rawg implements IDeveloperBehavior {
     }
 
     getDetail(): Promise<IDeveloperDetail | never> {
-        return this.getTemplate<IDeveloperDetail, IPaginationWithOrdering>("", "publishesDetail");
+        return this.getTemplate<IDeveloperDetail, IPaginationWithOrdering>("", "developerDetail");
     }
 
     private async getTemplate<T, P extends IPagination | IPaginationWithOrdering>(endpoint: string, setKey: keyof this, query?: P): Promise<T | never> {
