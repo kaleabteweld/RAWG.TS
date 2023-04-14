@@ -1,4 +1,4 @@
-import { IIdentifier, IPagination, IPaginationWithOrdering, TOrdering } from "./common"
+import { IIdentifier, IPagination, IPaginationWithOrdering, IQueryParameters, TOrdering } from "./common"
 import { ICreator } from "./creator"
 import { IGenre } from "./genre"
 import { IGamePlatform, IParentPlatforms } from "./platform"
@@ -126,42 +126,4 @@ export interface IGameBehavior {
     getDetail: () => Promise<IGamesDetails | never>
     getAchievementsList: () => Promise<IGameAchievement[] | never>
     getTrailers: () => Promise<IGameTrailer[] | never>
-}
-
-export interface IQueryParametersFilterBy {
-    platforms: string
-    stores: string
-    developers: string
-    publishers: string
-    genres: string
-    tags: string
-    creators: string
-    dates: string
-    updated: string
-    platforms_count: string
-    parent_platforms: string
-    metacritic: number
-    exclude_collection: number
-}
-
-export interface IQueryParametersInclude {
-    search_precise: boolean
-    search_exact: boolean
-    exclude_additions: boolean
-    exclude_parents: boolean
-    exclude_game_series: boolean
-    exclude_stores: boolean
-}
-
-export interface IQueryParameters extends IPagination, IQueryParametersFilterBy, IQueryParametersInclude {
-    search: string
-    ordering: TOrdering
-}
-
-export interface IQueryBuilder {
-    // addFilterBy: <T extends IQueryParametersFilterBy>(filterBy: T) => Omit<this, 'addFilterBy'>;
-    addFilterBy: <T extends IQueryParametersFilterBy>(filterBy: T) => IQueryBuilder;
-    addInclude: <T extends IQueryParametersInclude>(include: T) => IQueryBuilder;
-    addPagination: <T extends IPagination>(pagination: T) => IQueryBuilder;
-    build: () => any;
 }

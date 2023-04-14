@@ -1,6 +1,6 @@
-import { IPagination, IPaginationWithOrdering } from "../types/common";
+import { IPagination, IPaginationWithOrdering, IQueryParameters } from "../types/common";
 import { ICreator } from "../types/creator";
-import { IGame, IGameAchievement, IGameBehavior, IGameModelBehavior, IGameScreenshots, IGameStore, IGameTrailer, IGamesDetails, IQueryBuilder, IQueryParameters, IQueryParametersFilterBy, IQueryParametersInclude } from "../types/game";
+import { IGame, IGameAchievement, IGameBehavior, IGameModelBehavior, IGameScreenshots, IGameStore, IGameTrailer, IGamesDetails } from "../types/game";
 import Rawg from "./rawg";
 
 export class GameModel extends Rawg implements IGameModelBehavior {
@@ -82,35 +82,3 @@ export class Game extends Rawg implements IGameBehavior {
 
 }
 
-
-export class GameQueryBuilder implements IQueryBuilder {
-    private query: Partial<IQueryParameters> = {};
-
-    public addFilterBy(filterBy: Partial<IQueryParametersFilterBy>) {
-        this.query = {
-            ...this.query,
-            ...filterBy
-        }
-        return this
-    };
-
-    public addInclude(include: Partial<IQueryParametersInclude>) {
-        this.query = {
-            ...this.query,
-            ...include
-        }
-        return this
-    };
-
-    public addPagination(pagination: Partial<IPagination>) {
-        this.query = {
-            ...this.query,
-            ...pagination
-        }
-        return this
-    };
-
-    public build() {
-        return this.query;
-    }
-}

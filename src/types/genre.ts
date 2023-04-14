@@ -1,5 +1,5 @@
-import { IIdentifier } from "./common"
-import { IQueryParameters, IGenreGame } from "./game"
+import { IIdentifier, IQueryParameters } from "./common"
+import { IGenreGame } from "./game"
 
 export interface IGenre extends IIdentifier {
     games_count: number

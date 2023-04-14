@@ -1,5 +1,4 @@
-import { IPagination, IPaginationWithOrdering } from "../types/common";
-import { IQueryParameters } from "../types/game";
+import { IPagination, IPaginationWithOrdering, IQueryParameters } from "../types/common";
 import { IGenreBehavior, IGenre, IGenreDetail, IGenreModelBehavior } from "../types/genre";
 import Rawg from "./rawg";
 
