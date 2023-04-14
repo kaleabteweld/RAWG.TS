@@ -38,4 +38,11 @@ export class QueryBuilder implements IQueryBuilder {
             page_size: this.query.page_size
         }
     }
+    public buildPaginationWithOrdering(): Partial<IPaginationWithOrdering> {
+        return {
+            ordering: this.query.ordering,
+            page: this.query.page,
+            page_size: this.query.page_size
+        }
+    }
 }

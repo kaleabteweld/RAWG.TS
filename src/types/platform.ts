@@ -1,4 +1,5 @@
-import { IIdentifier } from "./common"
+import { IIdentifier, IPaginationWithOrdering } from "./common"
+import { IAddedGame } from "./game"
 
 export interface IGamePlatform {
     platform: IGamePlatformDetail
@@ -20,10 +21,23 @@ export interface IPlatform extends IIdentifier {
     image: string
     year_start: number
     year_end: number
+    games: IAddedGame
+
 }
 
 export interface IPlatformDetail extends IPlatform {
     description: string
 }
 
-export interface IParentPlatforms extends IIdentifier { }
+export interface IParentPlatforms extends IIdentifier {
+    platforms: IPlatform[]
+}
+
+export interface IPlatformsModelBehavior {
+    getPlatforms(query?: Partial<IPaginationWithOrdering>): Promise<IPlatform[] | never>
+    getParentPlatforms(query?: Partial<IPaginationWithOrdering>): Promise<IParentPlatforms[] | never>
+}
+
+export interface IPlatformsBehavior {
+    getDetail: () => Promise<IPlatform | never>
+}
