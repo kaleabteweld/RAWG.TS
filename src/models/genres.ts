@@ -13,7 +13,7 @@ export class GenresModel extends Rawg implements IGenreModelBehavior {
         this.rawg = rawg;
     }
 
-    async getGenres(query?: Partial<IQueryParameters>): Promise<IGenre[] | never> {
+    async getGenres(query?: Partial<IPagination>): Promise<IGenre[] | never> {
         try {
             this.genres = await this.rawg.sendGetRequest([this.endpoint], query)
             return this.genres

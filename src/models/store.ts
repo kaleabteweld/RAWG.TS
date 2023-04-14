@@ -13,7 +13,7 @@ export class StoreModel extends Rawg implements IStoreModelBehavior {
         this.rawg = rawg;
     }
 
-    async getStores(query?: Partial<IQueryParameters>): Promise<IStore[] | never> {
+    async getStores(query?: Partial<IPagination>): Promise<IStore[] | never> {
         try {
             this.stores = await this.rawg.sendGetRequest([this.endpoint], query)
             return this.stores

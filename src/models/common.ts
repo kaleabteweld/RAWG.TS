@@ -32,7 +32,7 @@ export class QueryBuilder implements IQueryBuilder {
     public build() {
         return this.query;
     }
-    public buildPagination() {
+    public buildPagination(): Partial<IPagination> {
         return {
             page: this.query.page,
             page_size: this.query.page_size
