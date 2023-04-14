@@ -1,4 +1,4 @@
-import { IIdentifier, IQueryParameters } from "./common"
+import { IIdentifier, IPagination, IQueryParameters } from "./common"
 import { IAddedGame } from "./game"
 
 export interface IPublisher extends IIdentifier {
@@ -12,7 +12,7 @@ export interface IPublishesDetail extends IPublisher {
 }
 
 export interface IPublisherModelBehavior {
-    getPublishers(query?: Partial<IQueryParameters>): Promise<IPublisher[] | never>
+    getPublishers(query?: Partial<IPagination>): Promise<IPublisher[] | never>
 }
 
 export interface IPublisherBehavior {

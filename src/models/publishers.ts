@@ -28,14 +28,14 @@ export class Publisher extends Rawg implements IPublisherBehavior {
 
     private endpoint: string = "publishers";
     private rawg: Rawg;
-    private store: IPublisher | IPublishesDetail;
+    private publisher: IPublisher | IPublishesDetail;
 
     public publishesDetail?: IPublishesDetail
 
-    constructor(rawg: Rawg, store: IPublisher | IPublishesDetail) {
+    constructor(rawg: Rawg, publisher: IPublisher | IPublishesDetail) {
         super(rawg.apiKey, rawg.baseUrl);
         this.rawg = rawg;
-        this.store = store;
+        this.publisher = publisher;
     }
 
     getDetail(): Promise<IPublishesDetail | never> {
@@ -44,7 +44,7 @@ export class Publisher extends Rawg implements IPublisherBehavior {
 
     private async getTemplate<T, P extends IPagination | IPaginationWithOrdering>(endpoint: string, setKey: keyof this, query?: P): Promise<T | never> {
         try {
-            const t = await this.rawg.sendGetRequest<T>([this.endpoint, this.store.id.toString(), endpoint], query) as T;
+            const t = await this.rawg.sendGetRequest<T>([this.endpoint, this.publisher.id.toString(), endpoint], query) as T;
             this[setKey] = t as any;
             return t;
         } catch (error) {
