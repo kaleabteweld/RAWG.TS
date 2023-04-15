@@ -42,23 +42,23 @@ export class Game extends Rawg implements IGameBehavior {
         this.game = game;
     }
 
-    getDLCs(query: IPagination): Promise<IGame[] | never> {
-        return this.getTemplate<IGame[], IPagination>("additions", "dlcs", query);
+    getDLCs(query: Partial<IPagination>): Promise<IGame[] | never> {
+        return this.getTemplate<IGame[], Partial<IPagination>>("additions", "dlcs", query);
     }
-    getCreators(query: IPagination): Promise<ICreator[] | never> {
-        return this.getTemplate<ICreator[], IPagination>("creators", "creators", query);
+    getCreators(query: Partial<IPagination>): Promise<ICreator[] | never> {
+        return this.getTemplate<ICreator[], Partial<IPagination>>("creators", "creators", query);
     }
-    getSeriesGames(query: IPagination): Promise<IGame[] | never> {
-        return this.getTemplate<IGame[], IPagination>("game-series", "seriesGames", query);
+    getSeriesGames(query: Partial<IPagination>): Promise<IGame[] | never> {
+        return this.getTemplate<IGame[], Partial<IPagination>>("game-series", "seriesGames", query);
     }
-    getParentGameForDlcs(query: IPagination): Promise<IGame[] | never> {
-        return this.getTemplate<IGame[], IPagination>("parent-games", "parentGameForDlcs", query);
+    getParentGameForDlcs(query: Partial<IPagination>): Promise<IGame[] | never> {
+        return this.getTemplate<IGame[], Partial<IPagination>>("parent-games", "parentGameForDlcs", query);
     }
-    getScreenshots(query: IPaginationWithOrdering): Promise<IGameScreenshots[] | never> {
-        return this.getTemplate<IGameScreenshots[], IPaginationWithOrdering>("screenshots", "screenshots", query);
+    getScreenshots(query: Partial<IPaginationWithOrdering>): Promise<IGameScreenshots[] | never> {
+        return this.getTemplate<IGameScreenshots[], Partial<IPaginationWithOrdering>>("screenshots", "screenshots", query);
     }
-    getStore(query: IPaginationWithOrdering): Promise<IGameStore[] | never> {
-        return this.getTemplate<IGameStore[], IPaginationWithOrdering>("stores", "stores", query);
+    getStore(query: Partial<IPaginationWithOrdering>): Promise<IGameStore[] | never> {
+        return this.getTemplate<IGameStore[], Partial<IPaginationWithOrdering>>("stores", "stores", query);
     }
     getDetail(): Promise<IGamesDetails | never> {
         return this.getTemplate<IGamesDetails, IPaginationWithOrdering>("", "GameGetDetail");
@@ -70,7 +70,7 @@ export class Game extends Rawg implements IGameBehavior {
         return this.getTemplate<IGameTrailer[], IPagination>("movies", "trailers");
     }
 
-    private async getTemplate<T, P extends IPagination | IPaginationWithOrdering>(endpoint: string, setKey: keyof this, query?: P): Promise<T | never> {
+    private async getTemplate<T, P extends IPagination | Partial<IPagination> | IPaginationWithOrdering | Partial<IPaginationWithOrdering>>(endpoint: string, setKey: keyof this, query?: P): Promise<T | never> {
         try {
             const games = await this.rawg.sendGetRequest<T>([this.endpoint, this.game.id.toString(), endpoint], query) as T;
             this[setKey] = games as any;

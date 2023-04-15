@@ -117,12 +117,12 @@ export interface IGameModelBehavior {
 }
 
 export interface IGameBehavior {
-    getDLCs: (query: IPagination) => Promise<IGame[]>
-    getCreators: (query: IPaginationWithOrdering) => Promise<ICreator[] | never>
-    getSeriesGames: (query: IQueryParameters) => Promise<IGame[] | never>
-    getParentGameForDlcs: (query: IQueryParameters) => Promise<IGame[] | never>
-    getScreenshots: (query: IPaginationWithOrdering) => Promise<IGameScreenshots[] | never>
-    getStore: (query: IPaginationWithOrdering) => Promise<IGameStore[] | never>
+    getDLCs: (query: Partial<IPagination>) => Promise<IGame[]>
+    getCreators: (query: Partial<IPaginationWithOrdering>) => Promise<ICreator[] | never>
+    getSeriesGames: (query: Partial<IQueryParameters>) => Promise<IGame[] | never>
+    getParentGameForDlcs: (query: Partial<IQueryParameters>) => Promise<IGame[] | never>
+    getScreenshots: (query: Partial<IPaginationWithOrdering>) => Promise<IGameScreenshots[] | never>
+    getStore: (query: Partial<IPaginationWithOrdering>) => Promise<IGameStore[] | never>
     getDetail: () => Promise<IGamesDetails | never>
     getAchievementsList: () => Promise<IGameAchievement[] | never>
     getTrailers: () => Promise<IGameTrailer[] | never>

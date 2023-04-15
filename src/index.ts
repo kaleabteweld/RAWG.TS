@@ -1,3 +1,4 @@
+import { MockData } from "../test/testData";
 import { QueryBuilder } from "./models/common";
 import { CreatorModel } from "./models/creator";
 import { DeveloperModel } from "./models/developers";
@@ -7,6 +8,8 @@ import { PlatformModel } from "./models/platform";
 import { PublisherModel } from "./models/publishers";
 import Rawg from "./models/rawg";
 import { StoreModel } from "./models/store";
+
+import fileSystem from "fs"
 
 const apiKey = "8f9502dd60e940eda43b6c4518c1dee5"
 
@@ -33,9 +36,15 @@ gameQueryBuilder.addFilterBy({
 })
 
 async function a() {
-    // const games = await gameModel.getGames(gameQueryBuilder.build());
-    // const gtav: Game = new Game(rawg, games[0]);
-    // const achievements = await gtav.getAchievementsList();
+    const games = await gameModel.getGames(gameQueryBuilder.build());
+    // const mockData: MockData = new MockData();
+    // mockData.addGames(games)
+
+
+    const gtav: Game = new Game(rawg, games[0]);
+    const achievements = await gtav.getAchievementsList();
+    // console.log("achievements ", achievements)
+    // mockData.addAchievements(achievements)
 
 
 
@@ -53,12 +62,12 @@ async function a() {
 
     // const devs = await developerModel.getDevelopers(gameQueryBuilder.buildPagination());
 
-    const creator = await creatorModel.getCreators(gameQueryBuilder.buildPagination());
-    const creatorRoles: any = await creatorModel.getCreatorRoles(gameQueryBuilder.buildPagination());
+    // const creator = await creatorModel.getCreators(gameQueryBuilder.buildPagination());
+    // const creatorRoles: any = await creatorModel.getCreatorRoles(gameQueryBuilder.buildPagination());
 
 
-    console.log(creator[0])
-    console.log(creatorRoles[0])
+    // console.log(games)
+    // console.log(creatorRoles[0])
 }
 
 a()
